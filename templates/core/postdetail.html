@@ -1,0 +1,139 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+  {% block content %} 
+
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-8 posts-list">
+                 <div class="single-post">
+                    <div class="feature-img">
+                       <img class="img-responsive" src="{{post.image.url}}" style="width: 730px; height: 365px; margin:0px auto;" alt="">
+                    </div>
+                    <div class="blog_details">
+                       <div class="row"> <div class="col-md-9">
+                        <h2>{{post.title}}
+                        </h2>
+                       </div>
+                       <div class="jobs_right col-md-3">
+                        <div class="apply_now">
+                        <a class="heart_mark" style="float: right;" href="#"> <i class="ti-heart"></i> </a>
+                        </div>
+                      </div>
+                     </div>
+                      
+                       <ul class="blog-info-link mt-3 mb-4">
+                          <li><a href=""><i class="fa fa-user"></i> {{post.create_by}}</a></li>
+                          <li><a href=""><i class="fa fa-comments"></i> {{post.comments.count}} Comments</a></li>
+                          <li><a href=""><i class="fa fa-calendar"></i> {{post.create_at|date:"M , d , Y"}}</a></li>
+                       </ul>
+                       <p class="excert">
+                        {{post.message}}
+                       </p>
+                   
+                       
+                    </div>
+                 </div>
+              
+                
+                 <div class="comments-area">
+                    <h4>{{post.comments.count}} Comments</h4>
+                    {% for comment in comments  %}
+                    <div class="comment-list">
+                       <div class="single-comment justify-content-between d-flex">
+                           <div class="container-fluid">
+                               <div class="row">
+                                   <div class="col-md-2" style="padding-right: 1px;">
+                                    <div class="thumb" style="margin-right: 1px;">
+                                        <img src="{{comment.commenter.profiles.image.url}}"  style="height: 70px;" class="img-responsive" alt="">
+                                     </div>
+                                   </div>
+                                   <div class="col-md-10" style="padding-left: 1px;">
+                                    <div class="desc">
+                                       
+                                        <p class="comment" style="word-break:break-word;">
+                                            {{comment.comment}}
+                                        </p>
+                                     
+                                     </div>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                 <div class="col"></div>
+                                    <div class="col-md-5 ">
+                                        <ul class="blog-info-link mt-3 mb-4 ">
+                                            <li><a ><i class="fa fa-user"></i> {{comment.commenter}}</a></li>
+     
+                                            <li><a href=""><i class="fa fa-calendar"></i> {{comment.create_at|date:"M , d , Y"}}</a></li>
+                                         </ul>
+                                       
+                                    </div>
+                                    
+                                  <div class="jobs_right col-md-5">
+                                    
+                                    {%if user not in comment.like.all%}
+                                    <div class="apply_now">
+                                      <a  class="heart_mark" style="float: right;"  href="{% url 'addlike' comment.post.id comment.id %}"> <i class="ti-heart"></i> </a>
+                                      </div>
+                                    {%else%}
+                                    <div class="apply_now">
+                                      <a  class="heart_mark" style="float: right;"  href="{% url 'addlike' comment.post.id comment.id %}"> <i class="fa fa-heart" aria-hidden="true"></i></a>
+                                      </div>
+                                    {%endif%}
+                                    {%if user == comment.commenter or user.is_staff%}
+                                    <div class="apply_now">
+                                       <a  class="trash_mark" style="float: right;"  href="{% url 'delete_comment' comment.post.id comment.id %}"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+                                       </div>
+                                    
+
+                                       {%endif%}
+                                       {%if user == comment.commenter%}
+                                       <div class="apply_now">
+                                          <a  class="edit_mark" style="float: right;"  href="{% url 'addlike' comment.post.id comment.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+                                          </div>
+                                          {%endif%}
+                                 </div>
+                            
+                               </div>
+                           </div>
+                         
+                       </div>
+                    </div>
+                    {% endfor %}
+                 </div>
+               
+              </div>
+              <div class="col-lg-4">
+                 <div class="blog_right_sidebar">
+                  <aside class="single_sidebar_widget tag_cloud_widget">
+                     <h4 class="widget_title">{{post}} Tags :</h4>
+                     <ul class="list">
+                        {% for tag in post.tags.all %}
+                        <li>
+                           <a href="{% url 'tagged' tag.slug %}">{{ tag}}</a>
+                        </li>
+                        {% empty %}
+                        <li>
+                           <a href="#">There are no similar post yet.</a>
+                        </li>
+                        {% endfor %}
+                        
+                     </ul>
+                  </aside>
+
+                    <aside class="single_sidebar_widget search_widget">
+                     <h4 class="widget_title">Add New Comment:</h4>
+                     {% include "includes/add_comment.html" %}
+                    </aside>
+                  
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+
+    <!--================Blog Area =================-->
+  {% endblock content %}
+ 

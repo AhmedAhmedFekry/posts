@@ -1,0 +1,194 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}{{ block.super }} - {{ board.name}}{% endblock title %}
+  {% block content %} 
+  	<!-- BREADCRUMB -->
+<div class="container">    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+
+    <li class="breadcrumb-item active" aria-current="page">{{ post.name}}</li>
+  </ol>
+</nav></div>
+    <!-- /BREADCRUMB -->
+ 
+  
+
+  <div class="job_details_area">
+    <div class="container  mb-4">
+                        
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'category_post' category.slug %}">{{category.title}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{post.title}}</li>
+            </ol>
+        </nav>
+    </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-10">
+                  <div class="job_details_header">
+                      <div class="single_jobs white-bg d-flex justify-content-between">
+                          <div class="jobs_left d-flex align-items-center">
+                              <div class="thumb" style="width: auto;height: auto; padding: 0px;">
+                                  <img src="{{post.image.url}}" class="img-responsive " style="max-width: 70px; max-height: 70px; margin:0px auto;" alt="">
+                              </div>
+                              <div class="jobs_conetent">
+                                  <a href="#"><h4>{{post.title}}</h4></a>
+                                  <div class="links_locat d-flex align-items-center">
+                                      <div class="location">
+                                          <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                      </div>
+                                      <div class="location">
+                                          <p> <i class="fa fa-clock-o"></i> Part-time</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="jobs_right">
+                              <div class="apply_now">
+                                  <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="descript_wrap white-bg">
+                      <div class="single_wrap">
+                          <h4>More Information</h4>
+                          <p>{{post.message}}</p>
+  
+                      </div>
+                      <div class="single_wrap">
+                        <h4 id="reply">Reply</h4>
+                        <div id="formcomment" >
+                            {% include "includes/add_comment.html" %}
+                        </div>
+
+                    </div>
+                  </div>
+               
+              </div>
+             
+          </div>
+          {% for comment in comments  %}
+          <div class="container mt-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-8">
+                    <div class="d-flex flex-column comment-section">
+                        <div class="bg-white p-2">
+                            <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{comment.commenter}}</span><span class="date text-black-50">{{comment.create_at}}</span></div>
+                            </div>
+                            <div class="mt-2">
+                                <p class="comment-text">{{comment.comment}}</p>
+                            </div>
+                        </div>
+                        <div class="bg-white">
+                            <div class="d-flex flex-row fs-12 pull-right">
+                                <div class="like p-2 cursor "> <form action="{% url 'like_comment' post.id comment.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{comment.id}}" name="comment_id"><button type="submit" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></button></form> </div>
+   
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+          {% endfor %}
+        
+      </div>
+  </div>
+  <section class="blog_area single-post-area section-padding">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 posts-list">
+  <div class="comments-area">
+    <h4>05 Comments</h4>
+    <div class="comment-list">
+       <div class="single-comment justify-content-between d-flex">
+          <div class="user justify-content-between d-flex">
+             <div class="thumb">
+                <img src="img/comment/comment_1.png" alt="">
+             </div>
+             <div class="desc">
+                <p class="comment">
+                   Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                   Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                </p>
+                <div class="d-flex justify-content-between">
+                   <div class="d-flex align-items-center">
+                      <h5>
+                         <a href="#">Emilly Blunt</a>
+                      </h5>
+                      <p class="date">December 4, 2017 at 3:12 pm </p>
+                   </div>
+                   <div class="reply-btn">
+                      <a href="#" class="btn-reply text-uppercase">reply</a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="comment-list">
+       <div class="single-comment justify-content-between d-flex">
+          <div class="user justify-content-between d-flex">
+             <div class="thumb">
+                <img src="img/comment/comment_2.png" alt="">
+             </div>
+             <div class="desc">
+                <p class="comment">
+                   Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                   Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                </p>
+                <div class="d-flex justify-content-between">
+                   <div class="d-flex align-items-center">
+                      <h5>
+                         <a href="#">Emilly Blunt</a>
+                      </h5>
+                      <p class="date">December 4, 2017 at 3:12 pm </p>
+                   </div>
+                   <div class="reply-btn">
+                      <a href="#" class="btn-reply text-uppercase">reply</a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="comment-list">
+       <div class="single-comment justify-content-between d-flex">
+          <div class="user justify-content-between d-flex">
+             <div class="thumb">
+                <img src="img/comment/comment_3.png" alt="">
+             </div>
+             <div class="desc">
+                <p class="comment">
+                   Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                   Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                </p>
+                <div class="d-flex justify-content-between">
+                   <div class="d-flex align-items-center">
+                      <h5>
+                         <a href="#">Emilly Blunt</a>
+                      </h5>
+                      <p class="date">December 4, 2017 at 3:12 pm </p>
+                   </div>
+                   <div class="reply-btn">
+                      <a href="#" class="btn-reply text-uppercase">reply</a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ </div>
+ </div>
+    </div>
+ </section>
+
+  {% endblock content %}

@@ -1,0 +1,20 @@
+<div class="apply_job_form white-bg">
+  
+    <form action="{% url 'add_comment' post.id %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+         
+           
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea name="comment" id="" cols="30" rows="10" placeholder="Enter your Comment for this Post " class="form-control" ></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="submit_btn">
+                    <button class="boxed-btn3 w-100" type="submit">Add Comment</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

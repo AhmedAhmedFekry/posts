@@ -1,0 +1,109 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+  {% block content %} 
+
+    <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
+        <div class="container  mb-4">
+                        
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                </ol>
+            </nav>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="blog_right_sidebar">
+                     
+
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">user panel</h4>
+                            <ul class="list cat-list">
+                  
+                                <li>
+                                    <a href="{% url 'login'  %}" class="d-flex">
+                                        <p>My Posts</p>
+                                        
+                                    </a>
+                                </li>
+                
+                                <li>
+                                    <a href="{% url 'login'  %}" class="d-flex">
+                                        <p>MY Comment</p>
+                                        
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'login'  %}" class="d-flex">
+                                        <p>My Favorite Post</p>
+                                        
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout'  %}" class="d-flex">
+                                        <p>Log Out</p>
+                                        
+                                    </a>
+                                </li>
+                
+                               
+                            </ul>
+                        </aside>
+
+                  
+
+
+                    </div>
+                </div>
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <table class="table table-sm">
+                        
+                        <tbody>
+                          <tr >
+                            <th style="vertical-align: middle;"> <a class="boxed-btn3" href="{% url 'user_update' %}"> Update Profile</a></th>
+                            <td style="vertical-align: middle;"> <a class="boxed-btn3" href="#" > Change Password</a></td>
+                            <td  colspan="2"><div class="single_candidates text-center">
+                                <div class="thumb">
+                                    <img src="{% static 'img/candiateds/1.png' %}" alt="">
+                                </div>
+                                <a href="#"><h4>Markary Jondon</h4></a>
+                              
+                            </div></td>
+                       
+                          </tr>
+                          <tr>
+                            <th scope="row">Name</th>
+                            <td colspan="2">Jacob</td>
+                        
+                          </tr>
+                          <tr>
+                            <th scope="row">Email</th>
+                            <td colspan="2">Larry the Bird</td>
+                          
+                          </tr>
+                          <tr>
+                            <th scope="row">City</th>
+                            <td colspan="2"> Cairo</td>
+                          
+                          </tr>
+                         
+                          <tr>
+                            <th scope="row">Country</th>
+                            <td colspan="2">Eygpt</td>
+                          
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+              
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+  {% endblock content %}
+ 

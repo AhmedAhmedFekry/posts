@@ -1,0 +1,65 @@
+{% load static %}
+
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area" style="background-color: #16a085;">
+            <div class="container-fluid ">
+                <div class="header_bottom_border">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                <a href="{% url 'home' %}">
+                             <h1 style="color:#fff;">Elsafy Post</h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{% url 'home' %}">home</a></li>
+                                      
+                                        
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            {% if user.is_authenticated%}
+                            <div class="Appointment">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {{user}}
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        
+                                    <a class="dropdown-item" href="{% url 'favorite_comments' %}">favorite_comments</a>
+                                      <a class="dropdown-item" href="{% url 'profile' %}">profile</a>
+                                      <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
+                                      
+                                    </div>
+                                  </div>
+                            </div>
+                            {% else  %}
+                            <div class="Appointment">
+                                <div class="phone_num d-none d-xl-block">
+                                    <a href="{% url 'login' %}">Log in</a>
+                                </div>
+                                <div class="phone_num d-none d-xl-block">
+                                    <a href="{% url 'signup' %}">sign up</a>
+                                </div>
+                            </div>  
+                            {% endif %}
+                           
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>

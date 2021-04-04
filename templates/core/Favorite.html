@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+  {% block content %} 
+
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-8 posts-list">
+            
+                
+                 <div class="comments-area">
+                    <h4>{{post.comments.count}} Comments</h4>
+                    {% for comment in comments  %}
+                    <div class="comment-list">
+                       <div class="single-comment justify-content-between d-flex">
+                           <div class="container-fluid">
+                               <div class="row">
+                                   <div class="col-md-2" style="padding-right: 1px;">
+                                    <div class="thumb" style="margin-right: 1px;">
+                                        <img src="{{comment.commenter.profiles.image.url}}"  style="height: 70px;" class="img-responsive" alt="">
+                                     </div>
+                                   </div>
+                                   <div class="col-md-10" style="padding-left: 1px;">
+                                    <div class="desc">
+                                       
+                                        <p class="comment" style="word-break:break-word;">
+                                            {{comment.comment}}
+                                        </p>
+                                     
+                                     </div>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                 <div class="col"></div>
+                                    <div class="col-md-8 ">
+                                        <ul class="blog-info-link mt-3 mb-4 ">
+                                            <li><a href=""><i class="fa fa-user"></i> {{comment.commenter}}</a></li>
+     
+                                            <li><a href=""><i class="fa fa-calendar"></i> {{comment.create_at|date:"M , d , Y"}}</a></li>
+                                         </ul>
+                                       
+                                    </div>
+                                    
+                                  <div class="jobs_right col-md-3">
+                                     
+                                    
+                                          {%if user not in comment.like.all%}
+                                          <div class="apply_now">
+                                            <a  class="heart_mark" style="float: right;"  href="{% url 'addlike' comment.post.id comment.id %}"> <i class="ti-heart"></i> </a>
+                                            </div>
+                                          {%else%}
+                                          <div class="apply_now">
+                                            <a  class="heart_mark" style="float: right;"  href="{% url 'addlike' comment.post.id comment.id %}"> <i class="fa fa-heart" aria-hidden="true"></i></a>
+                                            </div>
+                                          {%endif%}
+                                 </div>
+                            
+                               </div>
+                           </div>
+                         
+                       </div>
+                    </div>
+                    {% endfor %}
+                 </div>
+               
+              </div>
+              <div class="col-lg-4">
+               
+              </div>
+           </div>
+        </div>
+     </section>
+
+    <!--================Blog Area =================-->
+  {% endblock content %}
+ 
