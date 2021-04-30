@@ -8,11 +8,15 @@
         <div class="container mb-5">
             <div class="row align-items-center">
                 <div class="col"></div>
+                {% if request.user.is_authenticated %}
                 <div class="col-lg-6">
                     <div class="brouse_job text-right">
+                    
                         <a href="{% url 'add_post' %}" class="boxed-btn4"> Add Post</a>
                     </div>
                 </div>
+                {% endif %}
+                
             </div></div>
         <div class="container">
             <div class="row">
@@ -30,7 +34,7 @@
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="{% url 'post_detail' post.category.slug  post.slug  %}">
+                                <a class="d-inline-block" href="{% url 'post_detail' post.category.slug  post.slug %}">
                                     <h2>{{post.title}}</h2>
                                 </a>
                                 <p>{{post.message|truncatechars:150 }}</p>

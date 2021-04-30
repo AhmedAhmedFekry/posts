@@ -39,6 +39,7 @@
                                             <li><a href=""><i class="fa fa-user"></i> {{comment.commenter}}</a></li>
      
                                             <li><a href=""><i class="fa fa-calendar"></i> {{comment.create_at|date:"M , d , Y"}}</a></li>
+                                            <li><a href="{% url 'post_detail' comment.post.category.slug  comment.post.slug %}"><i class="fa fa-tasks"></i> {{comment.post.title}}</a></li>
                                          </ul>
                                        
                                     </div>

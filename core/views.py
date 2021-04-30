@@ -83,6 +83,7 @@ def add_post(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.create_by = request.user
+            obj.slug = slugify(obj.title)
             obj.save()
             form.save_m2m()
             return redirect('home')
