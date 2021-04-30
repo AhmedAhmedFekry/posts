@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     "taggit",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

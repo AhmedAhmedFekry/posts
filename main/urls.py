@@ -26,6 +26,8 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', SignUpView.as_view(), name="signup"),
+    path('api-auth/', include('rest_framework.urls'))
+
     # path('login/', log_in, name="login"),
     # path('login/', LoginView.as_view(template_name='accounts/login.html'), name="login"),
     # path('logout/', LogoutView.as_view(), name="logout"),
