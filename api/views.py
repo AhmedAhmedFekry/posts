@@ -52,8 +52,12 @@ class Viewsets_Post(viewsets.ModelViewSet):
 
 
 class Viewsets_Category(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
+    # queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        c = Category.objects.all()
+        return c
 
 
 class Viewsets_Comment(viewsets.ModelViewSet):

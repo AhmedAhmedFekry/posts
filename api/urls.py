@@ -5,7 +5,7 @@ from .views import Viewsets_Post, Viewsets_Like, Viewsets_Category, Viewsets_Com
 router = DefaultRouter()
 router.register('users', CurrentUserViewSet)
 router.register('posts', Viewsets_Post)
-router.register('categories', Viewsets_Category)
+router.register('categories', Viewsets_Category, basename='categories')
 router.register('comments', Viewsets_Comment)
 router.register('likes', Viewsets_Like)
 urlpatterns = [
