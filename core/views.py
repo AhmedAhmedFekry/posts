@@ -69,13 +69,6 @@ def show_post_detail(request, slug_category, slug_post):
     return render(request, 'core/postdetail.html', {'category': category, 'post': post, 'comments': comments, 'similar_posts': similar_posts})
 
 
-# def tagged(request, slug):
-
-#     tag = get_object_or_404(Tag, slug=slug)
-#     comm_posts = Post.objects.filter(tags=tag)
-#     return HttpResponse('')
-
-
 def add_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -91,37 +84,6 @@ def add_post(request):
     else:
         form = PostForm()
     return render(request, 'core/postform.html', {'form': form})
-
-
-# def add_post(request):
-#     if request.method == 'POST':
-#         form = PostForm(request.POST, request.FILES)
-#         currentuser = request.user
-#         if form.is_valid():
-
-#             # form.save()
-#             title = form.cleaned_data.get('title')
-#             message = form.cleaned_data.get('message')
-#             image = form.cleaned_data.get('image')
-#             print('image idddddddddddd', image)
-#             category = form.cleaned_data.get('category')
-#             tags = form.cleaned_data.get('tags')
-#             slug = slugify(title)
-#             print('the tags are ', tags)
-#             # print(type(tags))
-#             # # print('the tags are ', tags.value)
-#             post = Post.objects.create(
-#                 title=title, category=category, message=message, image=image, create_by=currentuser, slug=slug, tags=tags).save()
-#             # post.save_m2m()
-#             # post.tags.add('o', 'p')
-#             # post.save()
-#             print('the title is : ', title)
-#             print('the message is :', message)
-#             # print('post request is done', form)
-
-#     else:
-#         form = PostForm()
-#     return render(request, 'core/postform.html', {'form': form})
 
 
 def tagged(request, slug):
