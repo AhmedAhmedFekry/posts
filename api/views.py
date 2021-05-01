@@ -5,7 +5,7 @@ from .serializers import PostSerializer, CategorySerializer, CommenttSerializer,
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 #################  api   ###########################
 
 
@@ -74,4 +74,8 @@ class CurrentUserViewSet(viewsets.ReadOnlyModelViewSet):
 @api_view()
 @permission_classes([AllowAny])
 def firstfunc(request):
-    return Response({'message': 'we are recive respone test'})
+    print(request.query_params)
+    print(request.query_params['id'])
+    result = int(request.query_params['id']) * 3
+
+    return Response({'message': 'we are recive respone test', 'result': result})
