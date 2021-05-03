@@ -59,6 +59,14 @@ class Viewsets_Category(viewsets.ModelViewSet):
         c = Category.objects.all()
         return c
 
+    def retrieve(self, request, *args, **kwargs):
+        params = kwargs
+        print(params)
+        p = params['pk']
+        cate = Category.objects.filter(title=p)
+        serializer = CategorySerializer(cate, many=True)
+        return Response(serializer.data)
+
 
 class Viewsets_Comment(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
