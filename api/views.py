@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.text import slugify
 from core.models import Post, Category, Comment, Like
 from rest_framework import viewsets
 from .serializers import PostSerializer, CategorySerializer, CommenttSerializer, LikeSerializer, CurrentUserSerializer
@@ -77,6 +78,17 @@ class Viewsets_Category(viewsets.ModelViewSet):
         cate = Category.objects.filter(title=plist[0], id=int(plist[1]))
         serializer = CategorySerializer(cate, many=True)
         return Response(serializer.data)
+# Override Create Action _ CREATE Method ModelViewSet
+
+    def create(self, request, *args, **kwargs):
+        ca_data = request.data
+        print('category data', ca_data)
+        newCategory = Category.objects.create(
+            title=ca_data["title"], status=ca_data['status'], slug=slugify(ca_data['title']))
+        newCategory.save()
+        serialize = CategorySerializer(newCategory)
+        print('created is done')
+        return Response(serialize.data)
 
 
 class Viewsets_Comment(viewsets.ModelViewSet):
