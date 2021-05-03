@@ -58,6 +58,7 @@ class Viewsets_Category(viewsets.ModelViewSet):
     def get_queryset(self):
         c = Category.objects.all()
         return c
+# Search _ Filtering Data Inside ModelViewset
 
     def retrieve(self, request, *args, **kwargs):
         params = kwargs
