@@ -60,11 +60,21 @@ class Viewsets_Category(viewsets.ModelViewSet):
         return c
 # Search _ Filtering Data Inside ModelViewset
 
+    # def retrieve(self, request, *args, **kwargs):
+    #     params = kwargs
+    #     print(params)
+    #     p = params['pk']
+
+    #     cate = Category.objects.filter(title=p)
+    #     serializer = CategorySerializer(cate, many=True)
+    #     return Response(serializer.data)
+
+    #  Search in GET _Model Filtering With 2 Parameters Or More
     def retrieve(self, request, *args, **kwargs):
         params = kwargs
         print(params)
-        p = params['pk']
-        cate = Category.objects.filter(title=p)
+        plist = params['pk'].split('-')
+        cate = Category.objects.filter(title=plist[0], id=int(plist[1]))
         serializer = CategorySerializer(cate, many=True)
         return Response(serializer.data)
 
