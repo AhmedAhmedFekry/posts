@@ -90,6 +90,17 @@ class Viewsets_Category(viewsets.ModelViewSet):
         print('created is done')
         return Response(serialize.data)
 
+    def destroy(self, request, *args, **kwargs):
+        u = request.user
+        print(u)
+        print(u.is_superuser)
+        if u.is_superuser:
+            g = self.get_object()
+            g.delete()
+            return Response({'message': 'the object is deleted done'})
+        else:
+            return Response({'message': 'this user is not super admin '})
+
 
 class Viewsets_Comment(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
