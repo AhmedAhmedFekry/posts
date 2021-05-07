@@ -17,8 +17,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    create_by = CurrentUserSerializer(read_only=True)
-    # category = CategorySerializer(read_only=True)
+    # create_by = CurrentUserSerializer(read_only=True)
+    category = CategorySerializer(read_only=True)
 
     class Meta:
         model = Post
@@ -26,12 +26,13 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CommenttSerializer(serializers.ModelSerializer):
-    commenter = CurrentUserSerializer(read_only=True)
-    post = PostSerializer(read_only=True)
+    # commenter = CurrentUserSerializer(read_only=True)
+    # post = PostSerializer(read_only=True)
 
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['id', 'comment', 'post', 'commenter', 'like']
+        depth = 1
 
 
 class LikeSerializer(serializers.ModelSerializer):

@@ -89,6 +89,7 @@ class Viewsets_Category(viewsets.ModelViewSet):
         serialize = CategorySerializer(newCategory)
         print('created is done')
         return Response(serialize.data)
+#  Override Delete Action (destroy method) DELETE Request
 
     def destroy(self, request, *args, **kwargs):
         u = request.user
@@ -105,6 +106,30 @@ class Viewsets_Category(viewsets.ModelViewSet):
 class Viewsets_Comment(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommenttSerializer
+
+    def create(self, request, *args, **kwargs):
+        ca_data = request.data
+        print('category data', ca_data)
+        post = Post.objects.get(id=ca_data['post'])
+        print('post', post)
+        commenter = User.objects.get(id=ca_data['commenter'])
+        print('commenter', commenter)
+        new_comment = Comment.objects.create(
+            comment=ca_data['comment'], post=post, commenter=commenter)
+        new_comment.save()
+        print("ca_data['like']", ca_data['like'])
+        for l in ca_data['like']:
+            print(type(l))
+            print(l)
+            user = User.objects.get(id=l)
+            new_comment.like.add(user)
+        serializer = LikeSerializer(new_comment)
+        # newCategory = Category.objects.create(
+        #     title=ca_data["title"], status=ca_data['status'], slug=slugify(ca_data['title']))
+        # newCategory.save()
+        # serialize = CategorySerializer(newCategory)
+        # print('created is done')
+        return Response(serializer.data)
 
 
 class Viewsets_Like(viewsets.ModelViewSet):
