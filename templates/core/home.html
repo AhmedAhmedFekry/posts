@@ -1,4 +1,6 @@
 {% extends 'base/base.html' %}
+{% load blog_tags %}
+
 {% load static %}
 
   {% block content %} 
@@ -139,7 +141,26 @@
                                
                             </ul>
                          </aside>
+                   
+                         <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Most commented posts</h3>
+                            {% get_most_commented_posts as most_commented_posts %}
+                                {% for post in most_commented_posts %}
 
+                            <div class="media post_item">
+                                <img src="{{post.image.url}}" class="img-responsive " style="max-width: 70px; max-height: 70px; margin:0px auto;" alt="post">
+                                <div class="media-body">
+                                    <a href="{{ post.get_absolute_url }}">
+                                        <h3>{{post.title|truncatechars:30 }}</h3>
+                                    </a>
+                                    <p> #comments:{{post.comments.count}}</p>
+                                </div>
+                            </div>
+                           {% endfor %}
+                           
+                          
+                        </aside>
+                     
 
                         <aside class="single_sidebar_widget popular_post_widget">
                             <h3 class="widget_title">Recent Post</h3>

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'core.apps.CoreConfig',
     "api.apps.ApiConfig",
     'accounts.apps.AccountsConfig',
@@ -47,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_framework.authtoken',
     'rest_auth',
-    'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'rest_auth.registration',
