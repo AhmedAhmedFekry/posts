@@ -23,9 +23,16 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.contrib.sitemaps.views import sitemap
+from core.sitemaps import PostSitemap
+sitemaps = {
+    'posts': PostSitemap,
+}
 # from django.contrib.auth.views import LogoutView, PasswordResetView, LoginView, PasswordResetDoneView
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
     path('', include('core.urls')),
     path('', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
