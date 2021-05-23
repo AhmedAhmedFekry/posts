@@ -66,7 +66,7 @@
                         <tbody>
                           <tr >
                             <th style="vertical-align: middle;"> <a class="boxed-btn3" href="{% url 'user_update' %}"> Update Profile</a></th>
-                            <td style="vertical-align: middle;"> <a class="boxed-btn3" href="#" > Change Password</a></td>
+                            <td style="vertical-align: middle;"> <a class="boxed-btn3" href="{% url 'password_change' %}" > Change Password</a></td>
                             <td  colspan="2"><div class="single_candidates text-center">
                                 <div class="thumb">
                                     <img src="{{user.profiles.image.url}}" alt="">
