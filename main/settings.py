@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_framework.authtoken',
     'rest_auth',
-
+    'import_export',
     'allauth',
     'allauth.account',
     'rest_auth.registration',
