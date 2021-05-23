@@ -21,7 +21,6 @@ idna==2.10
 Markdown==3.3.4
 MarkupPy==1.14
 modeltranslation==0.25
-mysqlclient @ file:///C:/Users/Eng%20Ahmed%20Ahmed/Desktop/projects/Django%20Boards/mysqlclient-1.4.6-cp38-cp38-win32.whl
 oauthlib==3.1.0
 odfpy==1.4.1
 openpyxl==3.0.7
