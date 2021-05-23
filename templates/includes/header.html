@@ -14,18 +14,13 @@
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu  d-none d-lg-block">
+                            <div class="main-menu   d-lg-block">
                                 <nav>
-                                    <ul id="navigation">
-                                        <li><a href="{% url 'home' %}">home</a></li>
-                                      
-                                        
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
+                                    
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="col-xl-3 col-lg-3  d-lg-block">
                             {% if user.is_authenticated%}
                             <div class="Appointment">
                                 <div class="btn-group">
@@ -43,10 +38,10 @@
                             </div>
                             {% else  %}
                             <div class="Appointment">
-                                <div class="phone_num d-none d-xl-block">
+                                <div class="phone_num d-xl-block">
                                     <a href="{% url 'login' %}">Log in</a>
                                 </div>
-                                <div class="phone_num d-none d-xl-block">
+                                <div class="phone_num  d-xl-block">
                                     <a href="{% url 'signup' %}">sign up</a>
                                 </div>
                             </div>  

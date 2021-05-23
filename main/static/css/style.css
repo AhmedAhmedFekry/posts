@@ -7659,3 +7659,7 @@ h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+img.card-img.rounded-0 {
+  width: 100%!important;
+}
