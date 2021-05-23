@@ -69,32 +69,32 @@
                             <td style="vertical-align: middle;"> <a class="boxed-btn3" href="#" > Change Password</a></td>
                             <td  colspan="2"><div class="single_candidates text-center">
                                 <div class="thumb">
-                                    <img src="{% static 'img/candiateds/1.png' %}" alt="">
+                                    <img src="{{user.profiles.image.url}}" alt="">
                                 </div>
-                                <a href="#"><h4>Markary Jondon</h4></a>
+                                <a href="#"><h4>{{user}}</h4></a>
                               
                             </div></td>
                        
                           </tr>
                           <tr>
                             <th scope="row">Name</th>
-                            <td colspan="2">Jacob</td>
+                            <td colspan="2">{{user.get_full_name}}</td>
                         
                           </tr>
                           <tr>
                             <th scope="row">Email</th>
-                            <td colspan="2">Larry the Bird</td>
+                            <td colspan="2">{{user.email}}</td>
                           
                           </tr>
                           <tr>
                             <th scope="row">City</th>
-                            <td colspan="2"> Cairo</td>
+                            <td colspan="2"> {{user.profiles.city}}</td>
                           
                           </tr>
                          
                           <tr>
                             <th scope="row">Country</th>
-                            <td colspan="2">Eygpt</td>
+                            <td colspan="2"> {{user.profiles.country}}</td>
                           
                           </tr>
                         </tbody>
