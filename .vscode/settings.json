@@ -4,7 +4,7 @@
         "pylint_django"
     ],
     "python.linting.flake8Enabled": false,
-    "python.pythonPath": "env\\Scripts\\python.exe",
+    "python.pythonPath": "rar/bin/python3",
     "python.linting.enabled": true,
     "python.jediEnabled": false,
     "python.languageServer": "Microsoft"
