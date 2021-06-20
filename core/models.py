@@ -54,7 +54,8 @@ class Post(models.Model):
     def ago(self):
         # ag = timezone.now() - self.create_at
         ag = timezone.now()
-        return ag
+        return ag 
+        # return timezone.localtime(ag).strftime("%Y-%m-%d %H:%M:%S")
 
 
 class Comment(models.Model):
