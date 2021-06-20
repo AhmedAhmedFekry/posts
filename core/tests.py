@@ -42,19 +42,40 @@ class PostTest(TestCase):
         commenter= User.objects.create(username='ahmedmmmm',password='2f2f8vgr85')
         self.assertEqual(post.ago.strftime("%Y-%m-%d %H:%M:%S"),self.ad.strftime("%Y-%m-%d %H:%M:%S"))
         # response = self.client.post(reverse('post_detail', args=[post.category.slug, post.slug,])) #set unit_view to the url name in the urls.py
-# class CommentTest(TestCase):
-#     def comment_create(self):
-#         post=PostTest.post_create
+class CommentTest(TestCase):
+    def comment_create(self):
+        category1=Category.objects.create(title='front2dh50',status='True',slug='frontxsh502')
+        commenter=User.objects.create(username='ahmmed5fhsd120',password='2c5d5d55dff5176dd')
+        post=Post.objects.create(title='frontsdhss',message="lllll",slug='lfrdont',create_by=commenter,tags='django',category= category1)
+        
+        return Comment.objects.create(comment='fffffffff',post=post,commenter=commenter, active=True)
+    def test_model_str(self):
+        comment=self.comment_create()
+        self.assertEqual(comment.__str__(),f"{comment.commenter} commented on {comment.post}")
+
+class LikeTest(TestCase):
+    def like_create(self):
+        category1=Category.objects.create(title='front2dhf50',status='True',slug='fronftxsh502')
+        commenter=User.objects.create(username='ahmmed5fhfsd120',password='2c5d5d55dfff5176dd')
+        post=Post.objects.create(title='frontsdhfss',message="lllll",slug='lfrfdont',create_by=commenter,tags='django',category= category1)
+        comment=Comment.objects.create(comment='fffffffff',post=post,commenter=commenter, active=True)
+        return Like.objects.create(user=commenter,comment=comment,value='unlike')
+
+    def test_model_str(self):
+        like=self.like_create()
+        self.assertEqual(like.__str__(),like.comment.__str__())
 
 
-#  comment = models.TextField(null=True)
-#     post = models.ForeignKey(
-#         Post, related_name='comments', on_delete=models.CASCADE)
-#     commenter = models.ForeignKey(
-#         User, related_name='comments', on_delete=models.CASCADE)
-#     like = models.ManyToManyField(User, related_name='favourite', blank=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     active = models.BooleanField(default=False)
-#     def test_model_str(self):
-#         category=self.category_create()
-#         self.assertEqual(category.__str__(),category.title)  
+
+
+# class Get_Category_Test(TestCase):
+#     print('the method',get_category())
+#     print(Category.objects.get(id=1))
+#     c =Category.objects.get(id=1)
+#     def get_cate(self):
+#         return self.c 
+#     print(get_category.__module__)
+#     def test_model_get_category(self):
+#         # pass
+#         # print(Category.objects.get(id=1))
+#         self.assertEqual(get_category,self.get_cate() )
