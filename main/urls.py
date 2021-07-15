@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -42,7 +43,14 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')
          ), path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+       path('docs/', include_docs_urls(title='BlogAPI')),
+    path('schema', get_schema_view(
+        title="BlogAPI",
+        description="API for the BlogAPI",
+        version="1.0.0"
+    ), name='openapi-schema'),
+
     # path('login/', log_in, name="login"),
     # path('login/', LoginView.as_view(template_name='accounts/login.html'), name="login"),
     # path('logout/', LogoutView.as_view(), name="logout"),
