@@ -68,12 +68,12 @@ class LikeTest(TestCase):
 
 
 
-class Get_Category_Test(TestCase):
-    print('the method',get_category())
-    print(Category.objects.get(id=1))
-    c =Category.objects.get(id=1)
-    def get_cate(self):
-        return self.c 
-    print(get_category.__module__)
-    def test_model_get_category(self):
-        self.assertEqual(get_category,self.get_cate() )
+# class Get_Category_Test(TestCase):
+#     print('the method',get_category())
+#     print(Category.objects.get(id=1))
+#     c =Category.objects.get(id=1)
+#     def get_cate(self):
+#         return self.c 
+#     print(get_category.__module__)
+#     def test_model_get_category(self):
+#         self.assertEqual(get_category,self.get_cate() )
