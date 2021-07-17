@@ -1,4 +1,4 @@
-from django.test import TestCase ,override_settings ,SimpleTestCase
+from django.test import Client, SimpleTestCase, TestCase, override_settings
 from .models import Category ,Post ,Comment ,Like , get_category
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -65,15 +65,58 @@ class LikeTest(TestCase):
         like=self.like_create()
         self.assertEqual(like.__str__(),like.comment.__str__())
 
+class ViewTest(TestCase):
+    def setUp(self):
+        self.c = Client()
+        category1=Category.objects.create(title='front8',status='True',slug='front8')
+        create_by=User.objects.create(username='ahmmed5hs1240',password='2c5d5d5555176dd')
+        post=Post.objects.create(title='frontsdhss',message="lllll",slug='lfrdont',create_by=create_by,tags='django',category= category1)
+    @override_settings(STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage')
+    def test_home_page(self):
+        response= self.client.get('http://127.0.0.1:8000')
+        self.assertEqual(response.status_code, 200)
+
+    @override_settings(STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage')
+    def test_category_posts(self):
+        """
+        Test category posts response status
+        """
+        response = self.c.get(
+            reverse('category_post', args=['front8']))
+        self.assertEqual(response.status_code, 200)
+
+    @override_settings(STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage')
+    def test_show_post_detail(self):
+        """
+        Test category posts response status
+        """
+        response = self.c.get(
+            reverse('post_detail', args=['front8','lfrdont']))
+        self.assertEqual(response.status_code, 200)
+
+    @override_settings(STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage')
+    def test_add_post(self):
+        data={'title':'Git Tutorial1','category':"Preparation",'message':'vvv','tags':'git python'}
+        response= self.client.get(reverse('add_post'))
+        response= self.client.post(reverse('add_post'),data)
+        self.assertEqual(response.status_code, 200)
 
 
-
-# class Get_Category_Test(TestCase):
-#     print('the method',get_category())
-#     print(Category.objects.get(id=1))
-#     c =Category.objects.get(id=1)
-#     def get_cate(self):
-#         return self.c 
-#     print(get_category.__module__)
-#     def test_model_get_category(self):
-#         self.assertEqual(get_category,self.get_cate() )
+    @override_settings(STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage')
+    def test_tagged(self):
+        # response= self.client.get(reverse('tagged',args=('django',)))
+        # response= self.client.get(reverse('tagged',kwargs={'slug':'django'}))
+        response= self.client.get('http://127.0.0.1:8000/tag/github/')
+        
+        self.assertEqual(response.status_code, 404)
+      
+    @override_settings(STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage')
+    def test_add_comment(self):
+        # self.client.login(username='admin', password='admin')
+        category1=Category.objects.create(title='fronct8',status='True',slug='froccnt8')
+        create_by=User.objects.create(username='ahmmced5hs1240',password='2c5d5d55c55176dd')
+        post=Post.objects.create(title='frontcsdhss',message="llclll",slug='lfrdcont',create_by=create_by,tags='django',category= category1)
+        data={'comment':'Git Tutorial1','post':post,'commenter':create_by}
+        response= self.client.post(reverse('add_comment',args=[1]),data)
+        # response= self.client.post(reverse('add_post'),data)
+        self.assertEqual(response.status_code, 200)
