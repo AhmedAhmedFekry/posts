@@ -1,7 +1,7 @@
 This project is blog posts
 
 
-this prpoject depoly on heroku: https://e-commerce9.herokuapp.com/en/
+this prpoject depoly on heroku: https://blog-ahmed.herokuapp.com/
 
 Downloading project:
 Clone as zip file and open it your computer or if you have git application
