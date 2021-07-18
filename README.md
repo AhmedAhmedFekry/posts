@@ -31,3 +31,5 @@ python manage.py runserver
 • Implementing full-text search with PostgreSQL
 • build authentication system
 • testing by uint test
+• make api by using django rest frameork
+• create api docs 
