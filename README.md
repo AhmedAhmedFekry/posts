@@ -30,3 +30,4 @@ python manage.py runserver
 • Adding a sitemap and post feed
 • Implementing full-text search with PostgreSQL
 • build authentication system
+• testing by uint test
