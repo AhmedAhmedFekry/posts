@@ -117,7 +117,7 @@ def add_comment(request, num_post):
             comment_text = request.POST.get('comment')
             commenter = currentuser = request.user
             pro = UserProfile.objects.get(user=commenter)
-            print('the crrent user isfffffffffffffffffffffffffffffff ', request.user)
+            print('the crrent user is ', request.user)
             print(' the profile of comment writer is :',
                   commenter.profiles.city)
             comment = Comment.objects.create(
