@@ -5,6 +5,14 @@ from django.contrib.auth.models import User
 
 
 class CurrentUserSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        user_details = dict()
+        user_details["id"] = instance.id
+        user_details["email"] = instance.email
+        user_details["name"] = instance.username
+ 
+   
+        return user_details
     class Meta:
         model = User
         fields = ('username', 'email', 'id')

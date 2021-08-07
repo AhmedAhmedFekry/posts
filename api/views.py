@@ -7,7 +7,21 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 #################  api   ###########################
+
+
+
+
+@api_view(['GET'])
+def userDetail(request):
+    users=User.objects.all()
+    paginator = PaginatorWithPagesCount()
+    paginator.page_size = request.GET["page_size"]
+    result_page = paginator.paginate_queryset(users, request)
+    serializer = CurrentUserSerializer(result_page,many=True)
+    return paginator.get_paginated_response(serializer.data)
+    
 
 
 class Viewsets_Post(viewsets.ModelViewSet):
@@ -150,3 +164,17 @@ def firstfunc(request):
     result = int(request.query_params['id']) * 3
 
     return Response({'message': 'we are recive respone test', 'result': result})
+
+
+class PaginatorWithPagesCount(PageNumberPagination):
+
+    def get_paginated_response(self, data):
+        return Response({
+            'links': {
+               'next': self.get_next_link(),
+               'previous': self.get_previous_link()
+            },
+            'count': self.page.paginator.count,
+            'total_pages': self.page.paginator.num_pages,
+            'results': data
+        })

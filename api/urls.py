@@ -2,6 +2,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from .views import Viewsets_Post, Viewsets_Like, Viewsets_Category, Viewsets_Comment, CurrentUserViewSet, firstfunc
+from api.views import userDetail
 router = DefaultRouter()
 router.register('users', CurrentUserViewSet)
 router.register('posts', Viewsets_Post)
@@ -16,7 +17,8 @@ urlpatterns = [
          Viewsets_Post.as_view({'delete': 'remove_comment'})),
 
     path('testfunc/', firstfunc)
-
+    , 
+    path('users',userDetail)
     #  path('posts/<pk>/comment/<int:comment_id>/update',
     #          Viewsets_Post.as_view({'put': 'remove_comment'}))
 ]
